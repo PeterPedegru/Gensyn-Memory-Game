@@ -64,12 +64,13 @@
 
     #game-board {
       display: grid;
-      grid-template-columns: repeat(4, 1fr); /* Всегда 4 колонки */
+      /* grid-template-columns: repeat(4, 1fr); */ /* <- Управляется через JS */
       gap: 15px;
       perspective: 1000px;
-      max-width: 500px;
+      /* max-width: 500px; */ /* <- Управляется через JS */
       width: 100%;
       margin: 20px auto;
+      transition: max-width 0.5s ease-in-out; /* <- Добавил плавный переход */
     }
 
     .card {
@@ -313,8 +314,18 @@ function initLevel() {
   const selected = shuffle([...arts]).slice(0, pairs);
   const cards = shuffle([...selected, ...selected]);
 
-  // ОБНОВЛЕНО: Всегда используем 4 колонки для всех уровней
-  board.style.gridTemplateColumns = "repeat(4, 1fr)";
+  // ОБНОВЛЕНО: Убрана статическая строка
+  /* board.style.gridTemplateColumns = "repeat(4, 1fr)"; */
+
+  // ДОБАВЛЕНО: Динамическая сетка в зависимости от уровня
+  if (pairs <= 4) { // Level 1 (4 пары / 8 карт)
+    board.style.gridTemplateColumns = "repeat(4, 1fr)";
+    board.style.maxWidth = "500px"; // Узкая доска для 4x2
+  } else { // Level 2 (8 пар / 16 карт) и Level 3 (16 пар / 32 карты)
+    board.style.gridTemplateColumns = "repeat(8, 1fr)"; // 8 колонок
+    board.style.maxWidth = "900px"; // Широкая доска для 8x2 и 8x4
+  }
+  // КОНЕЦ ДОБАВЛЕННОГО
 
   cards.forEach(src => {
     const card = document.createElement("div");
