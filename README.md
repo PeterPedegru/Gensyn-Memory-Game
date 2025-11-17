@@ -1,9 +1,5 @@
 # GENSYN MEMORY
 
-<p align="center">
-<img src="https://www.google.com/search?q=https://placehold.co/600x400/0a0a0a/fad7d1%3Ftext%3DGENSYN%2BMEMORY%2BGameplay" alt="GENSYN MEMORY Gameplay Banner">
-</p>
-
 A stylish 'memory game' (find a pair) in the GENSYN sci-fi style. 3 difficulty levels, time/move tracking, and high score saving.
 
 This is a classic memory training game, fully implemented in a single index.html file. It requires no build process or external libraries and runs in any modern browser.
